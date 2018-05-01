@@ -1,7 +1,7 @@
 {
-  "name": "pluralsight-redux-starter",
+  "name": "notification-redux-starter",
   "version": "1.0.0",
-  "description": "Starter kit for React and Redux Pluralsight course by Cory House",
+  "description": "notification development",
   "scripts": {
     "prestart": "babel-node tools/startMessage.js",
     "start": "npm-run-all --parallel test:watch open:src lint:watch",
@@ -9,10 +9,10 @@
     "lint": "node_modules/.bin/esw webpack.config.* src tools",
     "lint:watch": "npm run lint -- --watch",
     "test": "mocha --reporter progress tools/testSetup.js \"src/**/*.test.js\"",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "build": "webpack-dev-server"
   },
-  "author": "Cory House",
-  "license": "MIT",
+  "author": "Yinan",
   "dependencies": {
     "babel-polyfill": "6.8.0",
     "bootstrap": "3.3.6",
@@ -24,6 +24,8 @@
     "react-router-redux": "4.0.4",
     "redux": "3.5.2",
     "redux-thunk": "2.0.1",
+    "semantic-ui-css": "^2.3.1",
+    "semantic-ui-react": "^0.79.1",
     "toastr": "2.1.2"
   },
   "devDependencies": {
@@ -64,9 +66,5 @@
     "webpack": "1.13.0",
     "webpack-dev-middleware": "1.6.1",
     "webpack-hot-middleware": "2.10.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/coryhouse/pluralsight-redux-starter"
   }
 }
