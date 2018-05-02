@@ -1,37 +1,56 @@
-import React from 'react';
+import React,{PropTypes}from 'react';
 import { Message, Icon} from 'semantic-ui-react';
+import styles from './Message.css';
 
 class MessageImport extends React.Component {
   constructor(props, context){
     super(props, context);
+
     this.state = {
-      visible: true
+        visible:true
     };
     this.handleDismiss = this.handleDismiss.bind(this);
   }
 
-  handleDismiss (event){
-     this.setState({ visible: false });
+  handleDismiss(){
+    this.setState({ visible:false});
 
     setTimeout(() => {
-      return this.setState({ visible: true });
+      this.setState({ visible: true });
     }, 2000);
   }
 
   render() {
-    if (this.state.visible) {
+    if (this.state.visible){
       return (
-        <Message icon>
-          <Icon name='circle notched' loading />
-          onDismiss={this.handleDismiss}
-         <Message.Content>
-          This is a special notification which you can dismiss.
-         </Message.Content>
-        </Message>
+        <div className="top-message">
+          <Message
+            warning
+            size='huge'
+            onDismiss={this.handleDismiss}
+            header={this.props.header}
+            content={this.props.content}
+          />
+        </div>
       );
     }
+    return (
+      <div className="top-message">
+        <br />
+        <i>The message will return in 2s</i>
+        <br />
+        <br />
+      </div>
+    );
 
   }
 }
+
+MessageImport.propTypes = {
+
+  header: PropTypes.string,
+  content: PropTypes.string
+
+};
 
 export default MessageImport;
