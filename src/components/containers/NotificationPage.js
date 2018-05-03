@@ -1,57 +1,47 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImportForm from '../elements/Form';
-import ImportMessage from '../elements/Message';
+import ImportGridSystem from './GridSystem';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 class HomePage extends React.Component{
-    constructor(props, context){
-        super(props, context);
-        this.state={
-          header: 'Title',
-          content:'There is a notification'
-        };
-      this.updateNotState = this.updateNotState.bind(this);
-      this.updateNotContent= this.updateNotContent.bind(this);
-      this.submitForm = this.submitForm.bind(this);
-      }
+    constructor(props, context) {
+      super(props, context);
+      this.state = {
+        message : Object.assign({}, this.props.message) //put properties of message into a object
+      };
+      //console.log(this.state.message);
+      this.updateMessageState = this.updateMessageState.bind(this);
+      this.createMessage = this.createMessage.bind(this);
+    }
 
-      updateNotState(event){
-          const notHead  = event.target.value;
-          return this.setState({header:notHead});
-      }
+      updateMessageState(event){
+        const field =  event.target.name;
+        let message  = this.state.message;
+        message[field]= event.target.value;
+        //console.log(this.state.message);
+        return this.setState({message:message});
 
-      updateNotContent(event){
-        const notContent  = event.target.value;
-        return this.setState({content:notContent});
-      }
-
-      submitForm(event){
-          alert('A title was submitted: ' + this.state.header);
-          event.preventDefault();
 
       }
+      createMessage(event){
+        console.log(this.state.message);
+        event.preventDefault();
 
+      }
 
       render(){
         return(
           <div>
 
-
               <ImportForm
-
-
-                onSave={this.submitForm}
-                header = {this.state.header}
-                content = {this.state.content}
-                titleChange={this.updateNotState}
-                contentChange = {this.updateNotContent}
-              />
-              <ImportMessage
-
-                header = {this.state.header}
-                content = {this.state.content}
+                onChange={this.updateMessageState}
+                onSave={this.createMessage}
+                message = {this.state.message}
               />
 
+              <ImportGridSystem/>
           </div>
 
         );
@@ -59,10 +49,28 @@ class HomePage extends React.Component{
     }
 
 
-
+//propTypes
 HomePage.propTypes = {
-  header : PropTypes.string,
-  content : PropTypes.string
+      message : PropTypes.object.isRequired
+      };
 
-};
-    export default HomePage;
+//map states to props
+function mapStateToProps(state, ownProps) {
+
+
+  let message ={
+    title: "",
+    content: "",
+    position: "",
+    color: ""
+  };
+
+
+  return {
+    message: message
+
+  };
+
+}
+
+export default connect(mapStateToProps)(HomePage);

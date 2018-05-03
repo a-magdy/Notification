@@ -1,12 +1,14 @@
 import React,{PropTypes}from 'react';
 import { Message, Icon} from 'semantic-ui-react';
-import styles from './Message.css';
 
-class MessageImport extends React.Component {
+
+class ImportMessage extends React.Component {
   constructor(props, context){
     super(props, context);
 
     this.state = {
+        header: "Title",
+        content: "There is the message content",
         visible:true
     };
     this.handleDismiss = this.handleDismiss.bind(this);
@@ -28,8 +30,8 @@ class MessageImport extends React.Component {
             warning
             size='huge'
             onDismiss={this.handleDismiss}
-            header={this.props.header}
-            content={this.props.content}
+            header={this.state.header}
+            content={this.state.content}
           />
         </div>
       );
@@ -46,11 +48,11 @@ class MessageImport extends React.Component {
   }
 }
 
-MessageImport.propTypes = {
+ImportMessage .propTypes = {
 
   header: PropTypes.string,
   content: PropTypes.string
 
 };
 
-export default MessageImport;
+export default ImportMessage;
