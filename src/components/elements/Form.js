@@ -4,7 +4,7 @@ import styles from '../styles/Form.css';
 
 
 
-const ImportForm  = ({message, onChange, onSave}) => {
+const ImportForm  = ({notification, onChange, onSave}) => {
 
 
     return (
@@ -17,37 +17,54 @@ const ImportForm  = ({message, onChange, onSave}) => {
                   type='text'
                   placeholder='Title'
                    name = "title"
-                   value = {message.title}
+                   value = {notification.title}
                    onChange = {onChange}
             />
 
-
-
-            <label>Message</label>
+            <label>Content</label>
             <input
                    type='text'
                    placeholder='Message'
                    name = "content"
-                   value = {message.content}
+                   value = {notification.content}
                    onChange={onChange}
             />
 
-          <label>position</label>
-          <select name='position' value={message.position} onChange={onChange}>
-              <option selected="selected" value="Top left">Top left</option>
-              <option value="Top right">Top right</option>
-              <option value="Top center">Top center</option>
-              <option value="Bottom left">Bottom left</option>
-              <option value="Bottom right">Bottom right</option>
-              <option value="Bottom center">Bottom center</option>
+          <label>Icon</label>
+          <input
+            type='text'
+            placeholder='Icon number'
+            name = "icon"
+            value = {notification.icon}s
+            onChange={onChange}
+          />
+
+          <label>Position</label>
+          <select name='position' value={notification.position} onChange={onChange}>
+              <option value="/" >Select the position</option>
+              <option value="topLeft">Top left</option>
+              <option value="topCenter">Top center</option>
+              <option value="topRight">Top right</option>
+              <option value="bottomLeft">Bottom left</option>
+              <option value="bottomCenter">Bottom center</option>
+              <option value="bottomRight">Bottom right</option>
           </select>
 
           <label>Type</label>
-          <select name='color' value={message.color} onChange={onChange}>
-              <option value="yellow">Warning</option>
-              <option selected="selected" value="green">Positive</option>
+          <select  name='color' value={notification.color} onChange={onChange}>
+              <option value='/'>Select the message type</option>
+              <option value='yellow'>Warning</option>
+              <option value="green">Positive</option>
               <option value="red">Negative</option>
           </select>
+          <label>Delete time</label>
+          <input
+            type='number'
+            placeholder='Delete time '
+            name = "deleteTime"
+            value = {notification.deleteTime}
+            onChange={onChange}
+          />
           <Form.Field>
             <Button
               fluid
@@ -66,7 +83,7 @@ const ImportForm  = ({message, onChange, onSave}) => {
 };
 
 ImportForm .propTypes = {
-  message : PropTypes.object,
+  notification : PropTypes.object,
   onSave : PropTypes.func,
   onChange : PropTypes.func
 };
