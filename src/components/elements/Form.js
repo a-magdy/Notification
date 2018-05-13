@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import {Form, Button} from 'semantic-ui-react';
-import styles from '../styles/Form.css';
+import '../styles/Form.css';
 
 
 
